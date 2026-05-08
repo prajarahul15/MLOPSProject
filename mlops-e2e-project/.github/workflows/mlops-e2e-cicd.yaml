@@ -22,11 +22,11 @@ jobs:
 
       - name: Build API Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mlops-api:latest -f docker/Dockerfile.api .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mlops-api:latest -f mlops-e2e-project/docker/Dockerfile.api mlops-e2e-project
 
       - name: Build UI Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mlops-ui:latest -f docker/Dockerfile.ui .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mlops-ui:latest -f mlops-e2e-project/docker/Dockerfile.api mlops-e2e-project
 
       - name: Push API image
         run: |
