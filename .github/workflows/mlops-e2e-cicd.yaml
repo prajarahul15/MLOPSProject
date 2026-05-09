@@ -45,12 +45,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup kubectl
+      - name: Verify kubectl
         run: |
           mkdir -p ~/.kube
+          export KUBECONFIG=/home/devopsadmin/.kube/config
           echo "${{ secrets.USER_KUBE_CONFIG_DATA }}" > ~/.kube/config
 
       - name: Deploy to Kubernetes
         run: |
+          export KUBECONFIG=/home/devopsadmin/.kube/config
           kubectl apply -f mlops-e2e-project/k8s/api-deployment.yaml
           kubectl apply -f mlops-e2e-project/k8s/ui-deployment.yaml
